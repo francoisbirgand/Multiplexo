@@ -30,46 +30,6 @@
 \urlstyle{same}  % don't use monospace font for urls
 \usepackage{natbib}
 \bibliographystyle{apalike}
-\usepackage{color}
-\usepackage{fancyvrb}
-\newcommand{\VerbBar}{|}
-\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
-\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
-% Add ',fontsize=\small' for more characters per line
-\usepackage{framed}
-\definecolor{shadecolor}{RGB}{248,248,248}
-\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
-\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
-\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
-\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\BuiltInTok}[1]{#1}
-\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
-\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
-\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
-\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
-\newcommand{\ExtensionTok}[1]{#1}
-\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\ImportTok}[1]{#1}
-\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
-\newcommand{\NormalTok}[1]{#1}
-\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
-\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
-\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
-\newcommand{\RegionMarkerTok}[1]{#1}
-\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
 \usepackage{longtable,booktabs}
 \usepackage{graphicx,grffile}
 \makeatletter
@@ -149,7 +109,18 @@ The first prototype of the system was built in 2010. The idea was that current w
 
 A more promising idea was to create a system that would be able to provide access to high enough frequency data for \emph{\textbf{multiple points}} in the vicinity of \emph{\textbf{one sensor}}. This solves the affordability problem as one sensor only is necessary, and it also solves the problem of multiplying maintenance on multiple sensors. Our solution is the MultiPlexed, MultiPoint Sampler or MPS, which we have now decided to call the \emph{MUX}, because it is just easier to say! And since you have the instrument with you now, you probably already have a pretty good idea of how it works.
 
-Our solution is thus to bring water to the sensor, rather than the opposite. And once this idea became a promising solution, then expanding the `bringing of water to the sensor' to multiple points was a natural extension of the idea. All the MUX is, is a peristaltic pump for pumping and purging, a bunch of three-way solenoid valves (we chose 12 for now) that dictate which sampling point is activated, and a micro controller system to control and log all the MUX activities in synchrony with the sensor. The MUX sequentially pumps water from all the desired point to the sensor, and once all the points have been sampled, the sequence starts over again. In theory, it is very simple. In practice, we have discovered that it takes a lot of attention to details to have a system that is robust enough to work over long periods of time reliably. We feel the version we have now is robust enough for others to use, although we are quite aware that there is still room for improvement, and we are dedicated to keep improving our system.
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{pictures/MUXLayout} 
+
+}
+
+\caption{General Layout of the MUX, including a control box, a peristaltic pump, 12 3-way solenoid valves, 12 inlets, and one outlet}\label{fig:MUXLayout}
+\end{figure}
+
+Our solution is thus to bring water to the sensor, rather than the opposite. And once this idea became a promising solution, then expanding the `bringing of water to the sensor' to multiple points was a natural extension of the idea. All the MUX is, is a peristaltic pump for pumping and purging, a bunch of three-way solenoid valves (we chose 12 for now) that dictate which sampling point is activated, and a micro controller system to control and log all the MUX activities in synchrony with the sensor (Figure \ref{fig:MUXLayout}). The MUX sequentially pumps water from all the desired point to the sensor, and once all the points have been sampled, the sequence starts over again.
+
+In theory, it is very simple. In practice, we have discovered that it takes a lot of attention to details to have a system that is robust enough to work over long periods of time reliably. We feel the version we have now is robust enough for others to use, although we are quite aware that there is still room for improvement, and we are dedicated to keep improving our system.
 
 \hypertarget{the-versions-available}{%
 \section{The versions available}\label{the-versions-available}}
@@ -157,80 +128,191 @@ Our solution is thus to bring water to the sensor, rather than the opposite. And
 Right now, we have three versions available. One specifically dedicated to work with the S::CAN field spectrophotometer called Spectro::lyser, one version that works with any sensor, and, a third version coupled with a synchronous syringe based sampler designed to sample rather small volumes of water at very low pumping rates (\textasciitilde{}around 1 ml/min).
 
 \hypertarget{intro}{%
-\chapter{Introduction}\label{intro}}
+\chapter{How to hook things together}\label{intro}}
 
-You can label chapter and section titles using \texttt{\{\#label\}} after them, e.g., we can reference Chapter \ref{intro}. If you do not manually label them, there will be automatic labels anyway, e.g., Chapter \ref{methods}.
+\hypertarget{the-different-parts}{%
+\section{The different parts}\label{the-different-parts}}
 
-Figures and tables with captions will be placed in \texttt{figure} and \texttt{table} environments, respectively.
+The version you have received works with a S::CAN spectro::lyser, a Con::nect box, a power supply cable connected between a battery or a AC to DC transformer, a 12V battery (+ solar panel for long term deployment) or a AC to DC transformer, a 6-pin and a 2-pin cables provided with the MUX, and the MUX itself. You need all these parts for things to work properly.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{par}\NormalTok{(}\DataTypeTok{mar =} \KeywordTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{, }\DecValTok{4}\NormalTok{, }\FloatTok{.1}\NormalTok{, }\FloatTok{.1}\NormalTok{))}
-\KeywordTok{plot}\NormalTok{(pressure, }\DataTypeTok{type =} \StringTok{'b'}\NormalTok{, }\DataTypeTok{pch =} \DecValTok{19}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+We use only 4 of the cables of the 6-pin cable. This cable is used to catch the cleaning or valve signal from the Spectro::lyser, which we later use trigger the MUX sampling sequence, and, to obtain the measurement data through the RS485 connection and communication protocol.
+
+We use the 2-pin cable to power the MUX. Honestly, we could have used the 6-pin cable and use all 6 cable to do, power, cleaning signal, and the data transfer, but by default, we like to keep a cable dedicated to power.
+
+\hypertarget{connecting-with-the-connect-box}{%
+\section{Connecting with the Con::nect Box}\label{connecting-with-the-connect-box}}
+
+All wires to the MUX are connected to the Con::nect Box. To use with the MUX, we use the left panel of the Con::nect Box (Figure \ref{fig:connectboxfull}).
 
 \begin{figure}
 
-{\centering \includegraphics[width=0.8\linewidth]{MUXManual_files/figure-latex/nice-fig-1} 
+{\centering \includegraphics[width=0.7\linewidth]{pictures/ConnectBoxFull} 
 
 }
 
-\caption{Here is a nice figure!}\label{fig:nice-fig}
+\caption{picture of the connecting capabilities inside the Con::nect Box}\label{fig:connectboxfull}
 \end{figure}
 
-Reference a figure by its code chunk label with the \texttt{fig:} prefix, e.g., see Figure \ref{fig:nice-fig}. Similarly, you can reference tables generated from \texttt{knitr::kable()}, e.g., see Table \ref{tab:nice-tab}.
+\hypertarget{powering-the-connect-box}{%
+\subsection{Powering the Con::nect Box}\label{powering-the-connect-box}}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{knitr}\OperatorTok{::}\KeywordTok{kable}\NormalTok{(}
-  \KeywordTok{head}\NormalTok{(iris, }\DecValTok{20}\NormalTok{), }\DataTypeTok{caption =} \StringTok{'Here is a nice table!'}\NormalTok{,}
-  \DataTypeTok{booktabs =} \OtherTok{TRUE}
-\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+At the most left side, the user connects the wires either connected a 12V battery, or to an AC to DC adapter, which delivers 12V. This is referred to as `DC In' on the Con::nect Box label (Figure \ref{fig:connectboxfull}). By convention, the positive wire is normally red and the negative wire, black. The black or negative wire is at the top or right of the label, and the red or positive wire is at the bottom (not really visible on Figure \ref{fig:connectboxfull}). Make sure you use at least 14 gauge for these wires, to be on the safe side.
 
-\begin{table}[t]
+All the Con::nect Box connections are done using spring-loaded terminal. You need to use a fine screwdriver and insert it on the top part of the terminal (yellow arrows on Figure \ref{fig:SpringLoadedTerminal}), gently push or rotate down to open the spring-loaded connection located below (magenta arrows on Figure \ref{fig:SpringLoadedTerminal}). While open, insert the wire as deep as you can to obtain the best and secure connection, while still leaving the plastic sheathing out. Make sure the free wires are not longer than 4 mm, however, otherwise free wires will be stay out and that is not ideal. After you have inserted the wires, make sure you pull on the wire. If it comes out easily, do it again until it is hard to pull on it. Also, always insert the bottom wires first.
 
-\caption{\label{tab:nice-tab}Here is a nice table!}
-\centering
-\begin{tabular}{rrrrl}
-\toprule
-Sepal.Length & Sepal.Width & Petal.Length & Petal.Width & Species\\
-\midrule
-5.1 & 3.5 & 1.4 & 0.2 & setosa\\
-4.9 & 3.0 & 1.4 & 0.2 & setosa\\
-4.7 & 3.2 & 1.3 & 0.2 & setosa\\
-4.6 & 3.1 & 1.5 & 0.2 & setosa\\
-5.0 & 3.6 & 1.4 & 0.2 & setosa\\
-\addlinespace
-5.4 & 3.9 & 1.7 & 0.4 & setosa\\
-4.6 & 3.4 & 1.4 & 0.3 & setosa\\
-5.0 & 3.4 & 1.5 & 0.2 & setosa\\
-4.4 & 2.9 & 1.4 & 0.2 & setosa\\
-4.9 & 3.1 & 1.5 & 0.1 & setosa\\
-\addlinespace
-5.4 & 3.7 & 1.5 & 0.2 & setosa\\
-4.8 & 3.4 & 1.6 & 0.2 & setosa\\
-4.8 & 3.0 & 1.4 & 0.1 & setosa\\
-4.3 & 3.0 & 1.1 & 0.1 & setosa\\
-5.8 & 4.0 & 1.2 & 0.2 & setosa\\
-\addlinespace
-5.7 & 4.4 & 1.5 & 0.4 & setosa\\
-5.4 & 3.9 & 1.3 & 0.4 & setosa\\
-5.1 & 3.5 & 1.4 & 0.3 & setosa\\
-5.7 & 3.8 & 1.7 & 0.3 & setosa\\
-5.1 & 3.8 & 1.5 & 0.3 & setosa\\
-\bottomrule
-\end{tabular}
-\end{table}
+\begin{figure}
 
-You can write citations, too. For example, we are using the \textbf{bookdown} package \citep{R-bookdown} in this sample book, which was built on top of R Markdown and \textbf{knitr} \citep{xie2015}.
+{\centering \includegraphics[width=0.9\linewidth]{pictures/SpringLoadedConnections} 
 
-\hypertarget{literature}{%
-\chapter{Literature}\label{literature}}
+}
 
-Here is a review of existing methods.
+\caption{Spring-loaded connections for the Con::nect Box}\label{fig:SpringLoadedTerminal}
+\end{figure}
+
+The three other connection types include `12V out', `Valve', and `RS485', and we use all three with the MUX.
+
+\hypertarget{powering-the-mux}{%
+\subsection{Powering the MUX}\label{powering-the-mux}}
+
+The MUX is powered by the `12V out' connection. The Con::nect Box provides a source of 12V power to other instruments that might be connected to it and we are taking advantage of this system to power the MUX. For that you will use the 2-pin cable as illustrated in Figure \ref{fig:2-pin-cable} below.
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.7\linewidth]{pictures/2-pin-cable} 
+
+}
+
+\caption{2-pin cable to provide 12V DC power to the MUX, with the blue wire as '+' and the white wire as '-'}\label{fig:2-pin-cable}
+\end{figure}
+
+The blue wire corresponds to the positive or ``+'' and the white wire corresponds to the negative or `-'. As illustrated in Figure \ref{fig:ConnectBox1}, insert the blue ``+'' wire at the bottom or left connection, and the white ``-'' wire at the top or right connection of the `12V out' terminal.
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.7\linewidth]{pictures/ConnectBox1} 
+
+}
+
+\caption{2-pin cable to provide 12V DC power to the MUX, with the blue wire as '+' and the white wire as '-'}\label{fig:ConnectBox1}
+\end{figure}
+
+\hypertarget{connections-to-trigger-the-mux}{%
+\subsection{Connections to Trigger the MUX}\label{connections-to-trigger-the-mux}}
+
+The Con::nect box has a connection through which it can send a 12V signal for a specified amount of time. Actually, it is the spectro::lyser that sends the 12V. Originally, this was used to open an air valve to send a burst of compressed air to clean up the optics. Later it has been used to activate an automatic brush, also to clean the optics. We are using this feature to start a sampling sequence from the MUX. When at idle, the MUX is listening to such a 12V signal, and upon receiving this signal the MUX starts its sampling sequence.
+
+For this we use the black and green wires of the 6-pin cable (Figure \ref{fig:6-pin-cable}).
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{pictures/6-pin-cable} 
+
+}
+
+\caption{6-pin cable to trigger a sampling sequence to the MUX, using the black (M-) and green (M+) wires, and, to communicate between the MUX and the spectro::lyser using the white (A+) and the red (B-) wires through the RS485 protocol}\label{fig:6-pin-cable}
+\end{figure}
+
+As illustrated in Figure \ref{fig:ConnectBox1}, insert the green ``M+'' wire at the bottom or left connection, and the black ``M-'' wire at the top or right connection of the `Valve' terminal.
+
+\hypertarget{communications-between-the-mux-and-the-spectrolyser}{%
+\subsection{Communications between the MUX and the Spectro::lyser}\label{communications-between-the-mux-and-the-spectrolyser}}
+
+With this version, the MUX essentially takes control of the Spectro::lyser, by giving impoing the measurement intervals, the 12V trigger signal duration, and its time before measurements, sending it into `logger mode', and writing the fingerprint values onto an SD card. For this we use the RS485 protocol and connections available through the Con::nect Box.
+
+As illustrated in Figure \ref{fig:ConnectBox1}, insert the white ``A+'' wire at the bottom or left connection, and the red ``B-'' wire at the top or right connection of the `RS485' terminal.
+
+\hypertarget{the-mux-external-plugs}{%
+\subsection{The MUX external plugs}\label{the-mux-external-plugs}}
+
+The 6-pin and 2-pin wires are plugged in the MUX box itself via the ``Auxilliary'' and ``12 VDC'' plugs located on the hinge side of the MUX box as illustrated in Figure \ref{fig:ConnectBox1} below.
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{pictures/ExternalPlugs} 
+
+}
+
+\caption{External plugs for the 2-pin and 6-pn cables}\label{fig:ExternalPlugs}
+\end{figure}
+
+\hypertarget{control-box-plugs}{%
+\subsection{Control box plugs}\label{control-box-plugs}}
+
+Inside the MUX, the control box (Figure \ref{fig:MUXLayout}) itself is connected via plugs to the 2-pin and 6-pin wires, and to the solenoid valves. The peristaltic pump is directly connected via its wires thanks to a screw terminal. Normally, there is no need to ever touch at any of these plugs. But should the user need it, it is possible to undo the control box from the rest, and or to change a solenoid valve and easily replace it if needed.
+
+For illustration, the MUX power plugs, as well as the valve and the RS485 plugs on the control box. The 12V coming from the Con::nect Box are plugged in the control box as illustrated in Figure \ref{fig:ControlBoxConnection12V} below.
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{pictures/ControlBoxConnection12V} 
+
+}
+
+\caption{12 V Connection between the control box and the external plug}\label{fig:ControlBoxConnection12V}
+\end{figure}
+
+The Signal input and the communication wires coming from the Con::nect Box are plugged in the control box as illustrated in Figure \ref{fig:ControlBoxConnectionValveRS485} below.
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{pictures/ControlBoxConnectionValveRS485} 
+
+}
+
+\caption{12 V Connection between the control box and the external plug}\label{fig:ControlBoxConnectionValveRS485}
+\end{figure}
+
+\hypertarget{how-it-works}{%
+\section{How it works}\label{how-it-works}}
+
+peristaltic pump
+
+change clock time
+
+Manual pump
+
+General functioning on/off
+
+\hypertarget{how-to-start}{%
+\section{How to start}\label{how-to-start}}
+
+\hypertarget{sd-card}{%
+\subsection{SD card}\label{sd-card}}
+
+\hypertarget{config-file}{%
+\subsection{Config file}\label{config-file}}
+
+\hypertarget{rinsing-options}{%
+\subsection{Rinsing options}\label{rinsing-options}}
+
+\hypertarget{how-to-change-the-clock}{%
+\section{How to change the clock}\label{how-to-change-the-clock}}
+
+\hypertarget{how-to-pump-manually}{%
+\section{How to pump manually}\label{how-to-pump-manually}}
+
+\hypertarget{how-to-trigger-the-mux-manually}{%
+\section{How to trigger the MUX manually}\label{how-to-trigger-the-mux-manually}}
+
+\hypertarget{the-files-you-get}{%
+\section{The files you get}\label{the-files-you-get}}
+
+\hypertarget{trouble-shooting}{%
+\section{Trouble shooting}\label{trouble-shooting}}
+
+\hypertarget{how-it-works-1}{%
+\chapter{How it works}\label{how-it-works-1}}
+
+An exert from our first paper \citep{Birgand2016-to} summarizes the philosophy behind the MUX:
+
+\begin{quote}
+To remain affordable, the system uses a single highfrequency automatic water quality probe as the central analytical
+instrument to which water from different sampling sites (hereafter, point sources) are pumped via a MPS (Fig. 1). Our design criteria when constructing the MPS system were: (1) to have the capacity of obtaining hourly or sub-hourly samples for measuring multiple point sources, (2) to be able to pump water from the point sources to the probe to overcome at least 3 m of head difference, (3) to be able to run on 12 volts (V) direct current (DC) power for field deployment, and (4) that the coupled MPS-water quality probe system functioned entirely automatically. An acceptable compromise for these criteria was to design an MPS system that enabled sampling from up to 12 point source sites located within 12 m of the central probe. We note that this distance could be extended, possibly even doubled, with the appropriate tubing at the cost of reduced temporal resolution on each point source.
+\end{quote}
+
+\begin{quote}
+As the in situ field spectrophotometer can only collect one measurement at a time on fixed time intervals, we designed and built an MPS to sequentially pump and purge water from each point source to the probe, in synchrony with the probe measurements, and cycle through the sequence of measurements to obtain at least hourly time resolution of data collection at each source. To maintain the water quality probe's capability of measuring small suspended particle concentrations, we chose 3.18 mm internal diameter flexible tubing as a sampling conduit of water from the point source to the probe, fitted with 1.5 mm mesh screens at the source (although only dissolved constituent applications are shown in this article). Consequently, the coupled MPS-water quality probe system is well suited for applications where the source sampling volume is not limited and does not affect the process or system studied.
+\end{quote}
 
 \hypertarget{methods}{%
 \chapter{Methods}\label{methods}}
