@@ -84,7 +84,7 @@
   \postauthor{\par}
       \predate{\centering\large\emph}
   \postdate{\par}
-    \date{2019-07-16}
+    \date{2019-07-17}
 
 \usepackage{booktabs}
 \usepackage{amsthm}
@@ -120,7 +120,7 @@ A more promising idea was to create a system that would be able to provide acces
 
 Our solution is thus to bring water to the sensor, rather than the opposite. And once this idea became a promising solution, then expanding the `bringing of water to the sensor' to multiple points was a natural extension of the idea. All the MUX is, is a peristaltic pump for pumping and purging, a bunch of three-way solenoid valves (we chose 12 for now) that dictate which sampling point is activated, and a micro controller system to control and log all the MUX activities in synchrony with the sensor (Figure \ref{fig:MUXLayout}). The MUX sequentially pumps water from all the desired point to the sensor, and once all the points have been sampled, the sequence starts over again.
 
-In theory, it is very simple. In practice, we have discovered that it takes a lot of attention to details to have a system that is robust enough to work over long periods of time reliably. We feel the version we have now is robust enough for others to use, although we are quite aware that there is still room for improvement, and we are dedicated to keep improving our system.
+In theory, it is very simple. In practice, we have discovered that it takes a lot of attention to details to have a system that is robust enough to work over long periods of time reliably. We feel the version we have now is robust enough for others to use, although we are quite aware that there is still room for improvement, and we are dedicated to keep improving our system. We have published the details of the design and the performance of the MUX in \citeyearpar{Birgand2016-to}.
 
 \hypertarget{the-versions-available}{%
 \section{The versions available}\label{the-versions-available}}
@@ -307,12 +307,14 @@ An exert from our first paper \citep{Birgand2016-to} summarizes the philosophy b
 
 \begin{quote}
 To remain affordable, the system uses a single highfrequency automatic water quality probe as the central analytical
-instrument to which water from different sampling sites (hereafter, point sources) are pumped via a MPS (Fig. 1). Our design criteria when constructing the MPS system were: (1) to have the capacity of obtaining hourly or sub-hourly samples for measuring multiple point sources, (2) to be able to pump water from the point sources to the probe to overcome at least 3 m of head difference, (3) to be able to run on 12 volts (V) direct current (DC) power for field deployment, and (4) that the coupled MPS-water quality probe system functioned entirely automatically. An acceptable compromise for these criteria was to design an MPS system that enabled sampling from up to 12 point source sites located within 12 m of the central probe. We note that this distance could be extended, possibly even doubled, with the appropriate tubing at the cost of reduced temporal resolution on each point source.
+instrument to which water from different sampling sites (hereafter, point sources) are pumped via a MPS (Fig. 1). Our design criteria when constructing the MPS system were: (1) to have the capacity of obtaining hourly or sub-hourly samples for measuring multiple point sources, (2) to be able to pump water from the point sources to the probe to overcome at least 3 m of head difference, (3) to be able to run on 12 volts (V) direct current (DC) power for field deployment, and (4) that the coupled MPS-water quality probe system functioned entirely automatically. An acceptable compromise for these criteria was to design an MPS system that enabled sampling from up to 12 point source sites located within {[}30{]} m of the central probe. {[}\ldots{}{]}.
 \end{quote}
 
 \begin{quote}
-As the in situ field spectrophotometer can only collect one measurement at a time on fixed time intervals, we designed and built an MPS to sequentially pump and purge water from each point source to the probe, in synchrony with the probe measurements, and cycle through the sequence of measurements to obtain at least hourly time resolution of data collection at each source. To maintain the water quality probe's capability of measuring small suspended particle concentrations, we chose 3.18 mm internal diameter flexible tubing as a sampling conduit of water from the point source to the probe, fitted with 1.5 mm mesh screens at the source (although only dissolved constituent applications are shown in this article). Consequently, the coupled MPS-water quality probe system is well suited for applications where the source sampling volume is not limited and does not affect the process or system studied.
+As the in situ field spectrophotometer can only collect one measurement at a time on fixed time intervals, we designed and built an MPS to sequentially pump and purge water from each point source to the probe, in synchrony with the probe measurements, and cycle through the sequence of measurements to obtain at least hourly time resolution of data collection at each source. To maintain the water quality probe's capability of measuring small suspended particle concentrations, we chose 3.18 mm internal diameter flexible tubing as a sampling conduit of water from the point source to the probe, fitted with 1.5 mm mesh screens at the source {[}\ldots{}{]}. Consequently, the coupled MPS-water quality probe system is well suited for applications where the source sampling volume is not limited and does not affect the process or system studied.
 \end{quote}
+
+To minimize cross contamination between samples, the idea we developed was to purge the instrument cuvette.
 
 \hypertarget{methods}{%
 \chapter{Methods}\label{methods}}
