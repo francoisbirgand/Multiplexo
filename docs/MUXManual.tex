@@ -307,14 +307,43 @@ An exert from our first paper \citep{Birgand2016-to} summarizes the philosophy b
 
 \begin{quote}
 To remain affordable, the system uses a single highfrequency automatic water quality probe as the central analytical
-instrument to which water from different sampling sites (hereafter, point sources) are pumped via a MPS (Fig. 1). Our design criteria when constructing the MPS system were: (1) to have the capacity of obtaining hourly or sub-hourly samples for measuring multiple point sources, (2) to be able to pump water from the point sources to the probe to overcome at least 3 m of head difference, (3) to be able to run on 12 volts (V) direct current (DC) power for field deployment, and (4) that the coupled MPS-water quality probe system functioned entirely automatically. An acceptable compromise for these criteria was to design an MPS system that enabled sampling from up to 12 point source sites located within {[}30{]} m of the central probe. {[}\ldots{}{]}.
+instrument to which water from different sampling sites (hereafter, point sources) are pumped via {[}the MUX{]}. Our design criteria when constructing the {[}MUX{]} system were: (1) to have the capacity of obtaining hourly or sub-hourly samples for measuring multiple point sources, (2) to be able to pump water from the point sources to the probe to overcome at least 3 m of head difference, (3) to be able to run on 12 volts (V) direct current (DC) power for field deployment, and (4) that the coupled {[}MUX{]}-water quality probe system functioned entirely automatically. An acceptable compromise for these criteria was to design {[}the MUX{]} that enabled sampling from up to 12 point source sites located within {[}30{]} m of the central probe. {[}\ldots{}{]}.
 \end{quote}
 
 \begin{quote}
-As the in situ field spectrophotometer can only collect one measurement at a time on fixed time intervals, we designed and built an MPS to sequentially pump and purge water from each point source to the probe, in synchrony with the probe measurements, and cycle through the sequence of measurements to obtain at least hourly time resolution of data collection at each source. To maintain the water quality probe's capability of measuring small suspended particle concentrations, we chose 3.18 mm internal diameter flexible tubing as a sampling conduit of water from the point source to the probe, fitted with 1.5 mm mesh screens at the source {[}\ldots{}{]}. Consequently, the coupled MPS-water quality probe system is well suited for applications where the source sampling volume is not limited and does not affect the process or system studied.
+As the in situ field spectrophotometer can only collect one measurement at a time on fixed time intervals, we designed and built {[}the MUX{]} to sequentially pump and purge water from each point source to the probe, in synchrony with the probe measurements, and cycle through the sequence of measurements to obtain at least hourly time resolution of data collection at each source. To maintain the water quality probe's capability of measuring small suspended particle concentrations, we chose 3.18 mm internal diameter flexible tubing as a sampling conduit of water from the point source to the probe, fitted with 1.5 mm mesh screens at the source {[}\ldots{}{]}. Consequently, the coupled {[}MUX{]}-water quality probe system is well suited for applications where the source sampling volume is not limited and does not affect the process or system studied.
 \end{quote}
 
-To minimize cross contamination between samples, the idea we developed was to purge the instrument cuvette.
+Overall the
+
+\hypertarget{bidirectional-flow-and-rinsing-purposes}{%
+\subsection{Bidirectional flow and rinsing purposes}\label{bidirectional-flow-and-rinsing-purposes}}
+
+In continuous flow laboratory equipment, the flow in the tubing is unidirectional, and the measuring cuvette is rinsed by the carrier solution and color reagent between samples. In our case, there is no carrier fluid for rinsing between samples. To minimize cross contamination between samples, the idea we developed was to reverse flow and purge the instrument cuvette instead. This is the reason for using a peristaltic pump. Now water can be purged either to the sampling port or to a port dedicated to waste.
+
+This addresses the cross contamination, but not the fouling that may occur as is often the case on the instrument optics. For this reason, the MUX has an embedded rinsing procedure where it is possible to use acid or other solutions for rinsing. The overall general setup is summarized in Figure \ref{fig:WorkLayout} below.
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{pictures/WorkLayout} 
+
+}
+
+\caption{The MUX in relationship with the sampling points, rinsing solutions, the instrument and its flow-through cuvette, and a sample loop}\label{fig:WorkLayout}
+\end{figure}
+
+In Figure \ref{fig:WorkLayout} above, \emph{n} sampling ports are activated, while two of the ports are dedicated to a \emph{rinsing solution 1} and a \emph{rinsing solution 2}. The MUX has 12 sampling ports and a 13\textsuperscript{th} port for waste if desired. The number or rinsing solutions used, therefore reduces the number of available ports for measured points. In the case of Figure \ref{fig:WorkLayout} above, a maximum of 12 - 2 = 10 ports are available for sampling.
+
+Sampled water from any sampling point, including the rinsing solutions, can be purged to any port, including the dedicated waste port (port 13 in the MUX box), or the same port used for sampling, or any other port of the user's choice.
+
+At the instrument, water is pumped through a flow-through cuvette. This allows to pump water beyond the cuvette and allow for rinsing of the whole manifold and of the cuvette with the new sample. We have found that a good practice to minimize cross contamination is to pump water at least 4 times beyond the volume of the cuvette. For use with the Spectro::lyser, we recommend to use the cuvette 1-Q-10/SBTX2-8/10X20 from Starnacell\textsuperscript{®}. It has a 10 mm path length, is made of quartz, which lets the UV light through, and has a large collar which make cleaning much easier.
+
+Eventually, it will be necessary to compare the instrument measured concentrations to those of the laboratory. For this, it is sometimes a good idea to add a \emph{sampling spool} made of tubing curled together. We recommend that the spool allows for large enough a volume corresponding to the one needed for lab analyses, but small enough such that the initial water that has served to rinse the MUX and the cuvette be beyond the spool such that when purging only `clean water' be used for lab sampling.
+
+\hypertarget{basic-sequence-of-events}{%
+\subsection{Basic sequence of events}\label{basic-sequence-of-events}}
+
+The Spectro::lyser instrument
 
 \hypertarget{methods}{%
 \chapter{Methods}\label{methods}}
