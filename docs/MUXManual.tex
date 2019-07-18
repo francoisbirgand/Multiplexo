@@ -84,7 +84,7 @@
   \postauthor{\par}
       \predate{\centering\large\emph}
   \postdate{\par}
-    \date{2019-07-17}
+    \date{2019-07-18}
 
 \usepackage{booktabs}
 \usepackage{amsthm}
@@ -300,8 +300,11 @@ General functioning on/off
 \hypertarget{trouble-shooting}{%
 \section{Trouble shooting}\label{trouble-shooting}}
 
-\hypertarget{how-it-works-1}{%
-\chapter{How it works}\label{how-it-works-1}}
+\hypertarget{the-mux-sensor-system}{%
+\chapter{The MUX-sensor system}\label{the-mux-sensor-system}}
+
+\hypertarget{the-general-design-principles-for-the-mux}{%
+\section{The general design principles for the MUX}\label{the-general-design-principles-for-the-mux}}
 
 An exert from our first paper \citep{Birgand2016-to} summarizes the philosophy behind the MUX:
 
@@ -314,14 +317,15 @@ instrument to which water from different sampling sites (hereafter, point source
 As the in situ field spectrophotometer can only collect one measurement at a time on fixed time intervals, we designed and built {[}the MUX{]} to sequentially pump and purge water from each point source to the probe, in synchrony with the probe measurements, and cycle through the sequence of measurements to obtain at least hourly time resolution of data collection at each source. To maintain the water quality probe's capability of measuring small suspended particle concentrations, we chose 3.18 mm internal diameter flexible tubing as a sampling conduit of water from the point source to the probe, fitted with 1.5 mm mesh screens at the source {[}\ldots{}{]}. Consequently, the coupled {[}MUX{]}-water quality probe system is well suited for applications where the source sampling volume is not limited and does not affect the process or system studied.
 \end{quote}
 
-Overall the
+\hypertarget{the-different-parts-of-the-mux-sensor-system}{%
+\section{The different parts of the MUX-sensor system}\label{the-different-parts-of-the-mux-sensor-system}}
 
 \hypertarget{bidirectional-flow-and-rinsing-purposes}{%
 \subsection{Bidirectional flow and rinsing purposes}\label{bidirectional-flow-and-rinsing-purposes}}
 
-In continuous flow laboratory equipment, the flow in the tubing is unidirectional, and the measuring cuvette is rinsed by the carrier solution and color reagent between samples. In our case, there is no carrier fluid for rinsing between samples. To minimize cross contamination between samples, the idea we developed was to reverse flow and purge the instrument cuvette instead. This is the reason for using a peristaltic pump. Now water can be purged either to the sampling port or to a port dedicated to waste.
+In continuous flow laboratory analytical equipment, the flow in the tubing is unidirectional, and the measuring cuvette is rinsed by the carrier solution and color reagent between samples to essentially eliminate cross-contamination between samples. In our case, although we are using the Spectro::lyser as an \emph{in situ} laboratory instrument, there is no carrier fluid for rinsing between samples. To minimize cross contamination between samples, the idea we developed was to reverse flow and purge the instrument cuvette from its water instead. This is the reason for using a peristaltic pump. Now water can be purged either to the sampling port or to a port dedicated to waste.
 
-This addresses the cross contamination, but not the fouling that may occur as is often the case on the instrument optics. For this reason, the MUX has an embedded rinsing procedure where it is possible to use acid or other solutions for rinsing. The overall general setup is summarized in Figure \ref{fig:WorkLayout} below.
+This addresses the cross contamination, but not the fouling that may occur as is often the case on the instrument optics. For this reason, the MUX has an embedded rinsing procedure where it is possible to use acid or other solutions for rinsing. The overall general MUX-sensor setup is summarized in Figure \ref{fig:WorkLayout} below.
 
 \begin{figure}
 
@@ -332,39 +336,54 @@ This addresses the cross contamination, but not the fouling that may occur as is
 \caption{The MUX in relationship with the sampling points, rinsing solutions, the instrument and its flow-through cuvette, and a sample loop}\label{fig:WorkLayout}
 \end{figure}
 
-In Figure \ref{fig:WorkLayout} above, \emph{n} sampling ports are activated, while two of the ports are dedicated to a \emph{rinsing solution 1} and a \emph{rinsing solution 2}. The MUX has 12 sampling ports and a 13\textsuperscript{th} port for waste if desired. The number or rinsing solutions used, therefore reduces the number of available ports for measured points. In the case of Figure \ref{fig:WorkLayout} above, a maximum of 12 - 2 = 10 ports are available for sampling.
+In Figure \ref{fig:WorkLayout} above, \emph{n} sampling ports are activated, while two of the ports are dedicated to a \emph{rinsing solution 1} and a \emph{rinsing solution 2}. The MUX has 12 sampling ports and a 13\textsuperscript{th} port for waste if desired. The number or rinsing solutions used, therefore reduces the number of available ports for measured points. In the case of Figure \ref{fig:WorkLayout} above, a maximum of 12 - 2 = 10 ports remain available for point sampling.
 
 Sampled water from any sampling point, including the rinsing solutions, can be purged to any port, including the dedicated waste port (port 13 in the MUX box), or the same port used for sampling, or any other port of the user's choice.
 
-At the instrument, water is pumped through a flow-through cuvette. This allows to pump water beyond the cuvette and allow for rinsing of the whole manifold and of the cuvette with the new sample. We have found that a good practice to minimize cross contamination is to pump water at least 4 times beyond the volume of the cuvette. For use with the Spectro::lyser, we recommend to use the cuvette 1-Q-10/SBTX2-8/10X20 from Starnacell\textsuperscript{®}. It has a 10 mm path length, is made of quartz, which lets the UV light through, and has a large collar which make cleaning much easier.
+At the instrument, water is pumped through a flow-through cuvette. This allows to pump water beyond the cuvette and allow for rinsing of the whole manifold and of the cuvette with the new sample. We have found that a good practice to minimize cross contamination is to pump water at least 4 times beyond the volume of the cuvette. For use with the Spectro::lyser with a 35 mm opening, we recommend to use the cuvette 1-Q-10/SBTX2-8/10X20 from Starnacell\textsuperscript{®}. It has a 10 mm path length, is made of quartz, which lets the UV light through, and has a large collar, which make cleaning much easier.
 
-Eventually, it will be necessary to compare the instrument measured concentrations to those of the laboratory. For this, it is sometimes a good idea to add a \emph{sampling spool} made of tubing curled together. We recommend that the spool allows for large enough a volume corresponding to the one needed for lab analyses, but small enough such that the initial water that has served to rinse the MUX and the cuvette be beyond the spool such that when purging only `clean water' be used for lab sampling.
+Eventually during a measurement campaign, it is necessary to compare the instrument measured concentrations to those of the laboratory. For this, it is sometimes a good idea to add a \emph{sampling spool} made of tubing curled together. We recommend that the spool allows for large enough a volume corresponding to the one needed for lab analyses, but small enough such that the initial water that has served to rinse the MUX and the cuvette be beyond the spool such that when purging only `clean water' be used for lab sampling.
 
 \hypertarget{basic-sequence-of-events}{%
 \subsection{Basic sequence of events}\label{basic-sequence-of-events}}
 
-The Spectro::lyser instrument
+In the MUX \emph{config.txt} file (see further details later), the user specifies the desired sampling interval. During initialization, the MUX puts the Spectro::lyser in \emph{logger mode}, which means that the instrument will, with no live connection to a computer, automatically take measurements at the indicated time interval.
 
-\hypertarget{methods}{%
-\chapter{Methods}\label{methods}}
+The Spectro::lyser sequence of actions (Figure \ref{fig:BasicSequence}) is thus to first send a 12V signal measurable at the `valve' output in the Con::nect box. Again, this is the way the Spectro::lyser deals with fouling. After a given time, referred to as \emph{clean wait} in the \emph{config.txt} file and in Figure \ref{fig:WorkLayout}, the instrument takes a measurement. A measurement consists in two series of light bursts accompanied by a series of beeps. There are about 9 seconds between the first and the last beep. After that, it takes the Spectro::lyser about 25 seconds to analyze its measurement and make available its absorbance fingerprint and its calculated concentrations (Figure \ref{fig:BasicSequence}).
 
-We describe our methods in this chapter.
+\begin{figure}
 
-\hypertarget{applications}{%
-\chapter{Applications}\label{applications}}
+{\centering \includegraphics[width=0.8\linewidth]{pictures/BasicSequence} 
 
-Some \emph{significant} applications are demonstrated in this chapter.
+}
 
-\hypertarget{example-one}{%
-\section{Example one}\label{example-one}}
+\caption{The MUX in relationship with the sampling points, rinsing solutions, the instrument and its flow-through cuvette, and a sample loop}\label{fig:BasicSequence}
+\end{figure}
 
-\hypertarget{example-two}{%
-\section{Example two}\label{example-two}}
+The idea with the MUX is to have water to be analyzed in the measuring chamber or cuvette when the Spectro::lyser does its measurement. Once the MUX `hears' the \emph{cleaning signal} from the Spectro::lyser (Figure \ref{fig:BasicSequence}), it starts its pumping for a \emph{pump time} defined in the \emph{config.txt} file. The \emph{pump time} corresponds to the time it takes for water to go from its sampling point to the instrument cuvette, to which one must add the number of seconds necessary to rinse the equivalent of at least 4-5 times the cuvette volume. For some applications, there is no limit on the available volume of water to be analyzed. In these cases, one might want to add 5-6 seconds more on the \emph{pump time}. For other applications, the available volume might be limited, and it might be necessary to limit the pump time to the strict minimum prescribed here.
 
-\hypertarget{final-words}{%
-\chapter{Final Words}\label{final-words}}
+The \emph{pump time} and the \emph{clean wait} times are thus intrinsically linked. The \emph{clean wait} time has to be equal to the pump time plus at least 5 seconds to let water in the cuvette `rest' and let all micro air bubbles to stop moving to obtain a reliable and consistent reading by the Spectro::lyser. Keep in mind that there are about 1-2 seconds delay between the \emph{cleaning signal} and the time when the pumping starts (Figure \ref{fig:BasicSequence}).
 
-We have finished a nice book.
+There are two important things to realize here:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  In reality, the \emph{pump time} may vary from sampling point to the next as it is preferable to pump the least amount of time per port to save energy and pump tubing. The \emph{pump time} for each port is defined in the \emph{config.txt} file. However, the \emph{clean wait} time corresponds to a parameter from the Spectro::lyser, and the same value applies to all sampling points. As a result, the \emph{clean wait} time \textbf{must correspond to the longest \emph{pump time} + 5 seconds} (Figure \ref{fig:TimingsSeveralPorts}).
+\item
+  Because it always takes the same amount of time between the \emph{cleaning signal} and the last beep of the Spectro::lyser measurement, and, because the \emph{pump time} may vary from one sampling point to the next, the (on the MUX side) \textbf{sum of \emph{pump time} + the MUX \emph{measurement time}} should also be the same and be equal to (on the Spectro::lyser side) \textbf{the \emph{clean wait} time + the 9 sec.~of measurement time + at least 2 seconds past the last measurement} (Figure \ref{fig:TimingsSeveralPorts}).
+\end{enumerate}
+
+As a result, the \emph{measurement time} from the MUX must be adjusted (in the \emph{config.txt} file) accordingly as illustrated in Figure \ref{fig:TimingsSeveralPorts}
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{pictures/TimingsSeveralPorts} 
+
+}
+
+\caption{The MUX in relationship with the sampling points, rinsing solutions, the instrument and its flow-through cuvette, and a sample loop}\label{fig:TimingsSeveralPorts}
+\end{figure}
 
 \bibliography{book.bib,packages.bib}
 

@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>3 How it works | User Guide for the MUX</title>
+  <title>3 The MUX-sensor system | User Guide for the MUX</title>
   <meta name="description" content="This is a user guide to use the Multiplexed, Multipoint Sampler system called MUX" />
   <meta name="generator" content="bookdown 0.12 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="3 How it works | User Guide for the MUX" />
+  <meta property="og:title" content="3 The MUX-sensor system | User Guide for the MUX" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="3 How it works | User Guide for the MUX" />
+  <meta name="twitter:title" content="3 The MUX-sensor system | User Guide for the MUX" />
   
   <meta name="twitter:description" content="This is a user guide to use the Multiplexed, Multipoint Sampler system called MUX" />
   
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="intro.html">
-<link rel="next" href="methods.html">
+<link rel="next" href="references.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -91,19 +91,13 @@
 <li class="chapter" data-level="2.8" data-path="intro.html"><a href="intro.html#the-files-you-get"><i class="fa fa-check"></i><b>2.8</b> The files you get</a></li>
 <li class="chapter" data-level="2.9" data-path="intro.html"><a href="intro.html#trouble-shooting"><i class="fa fa-check"></i><b>2.9</b> Trouble shooting</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="how-it-works-1.html"><a href="how-it-works-1.html"><i class="fa fa-check"></i><b>3</b> How it works</a><ul>
-<li class="chapter" data-level="3.1" data-path="how-it-works-1.html"><a href="how-it-works-1.html#the-general-design-principles"><i class="fa fa-check"></i><b>3.1</b> The general design principles</a></li>
-<li class="chapter" data-level="3.2" data-path="how-it-works-1.html"><a href="how-it-works-1.html#the-different-parts-of-the-mux-sensor-system"><i class="fa fa-check"></i><b>3.2</b> The different parts of the MUX-sensor system</a><ul>
-<li class="chapter" data-level="3.2.1" data-path="how-it-works-1.html"><a href="how-it-works-1.html#bidirectional-flow-and-rinsing-purposes"><i class="fa fa-check"></i><b>3.2.1</b> Bidirectional flow and rinsing purposes</a></li>
-<li class="chapter" data-level="3.2.2" data-path="how-it-works-1.html"><a href="how-it-works-1.html#basic-sequence-of-events"><i class="fa fa-check"></i><b>3.2.2</b> Basic sequence of events</a></li>
+<li class="chapter" data-level="3" data-path="the-mux-sensor-system.html"><a href="the-mux-sensor-system.html"><i class="fa fa-check"></i><b>3</b> The MUX-sensor system</a><ul>
+<li class="chapter" data-level="3.1" data-path="the-mux-sensor-system.html"><a href="the-mux-sensor-system.html#the-general-design-principles-for-the-mux"><i class="fa fa-check"></i><b>3.1</b> The general design principles for the MUX</a></li>
+<li class="chapter" data-level="3.2" data-path="the-mux-sensor-system.html"><a href="the-mux-sensor-system.html#the-different-parts-of-the-mux-sensor-system"><i class="fa fa-check"></i><b>3.2</b> The different parts of the MUX-sensor system</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="the-mux-sensor-system.html"><a href="the-mux-sensor-system.html#bidirectional-flow-and-rinsing-purposes"><i class="fa fa-check"></i><b>3.2.1</b> Bidirectional flow and rinsing purposes</a></li>
+<li class="chapter" data-level="3.2.2" data-path="the-mux-sensor-system.html"><a href="the-mux-sensor-system.html#basic-sequence-of-events"><i class="fa fa-check"></i><b>3.2.2</b> Basic sequence of events</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="methods.html"><a href="methods.html"><i class="fa fa-check"></i><b>4</b> Methods</a></li>
-<li class="chapter" data-level="5" data-path="applications.html"><a href="applications.html"><i class="fa fa-check"></i><b>5</b> Applications</a><ul>
-<li class="chapter" data-level="5.1" data-path="applications.html"><a href="applications.html#example-one"><i class="fa fa-check"></i><b>5.1</b> Example one</a></li>
-<li class="chapter" data-level="5.2" data-path="applications.html"><a href="applications.html#example-two"><i class="fa fa-check"></i><b>5.2</b> Example two</a></li>
-</ul></li>
-<li class="chapter" data-level="6" data-path="final-words.html"><a href="final-words.html"><i class="fa fa-check"></i><b>6</b> Final Words</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -125,10 +119,10 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="how-it-works-1" class="section level1">
-<h1><span class="header-section-number">3</span> How it works</h1>
-<div id="the-general-design-principles" class="section level2">
-<h2><span class="header-section-number">3.1</span> The general design principles</h2>
+<div id="the-mux-sensor-system" class="section level1">
+<h1><span class="header-section-number">3</span> The MUX-sensor system</h1>
+<div id="the-general-design-principles-for-the-mux" class="section level2">
+<h2><span class="header-section-number">3.1</span> The general design principles for the MUX</h2>
 <p>An exert from our first paper <span class="citation">(Birgand et al. <a href="#ref-Birgand2016-to">2016</a>)</span> summarizes the philosophy behind the MUX:</p>
 <blockquote>
 <p>To remain affordable, the system uses a single highfrequency automatic water quality probe as the central analytical
@@ -143,14 +137,14 @@ instrument to which water from different sampling sites (hereafter, point source
 <div id="bidirectional-flow-and-rinsing-purposes" class="section level3">
 <h3><span class="header-section-number">3.2.1</span> Bidirectional flow and rinsing purposes</h3>
 <p>In continuous flow laboratory analytical equipment, the flow in the tubing is unidirectional, and the measuring cuvette is rinsed by the carrier solution and color reagent between samples to essentially eliminate cross-contamination between samples. In our case, although we are using the Spectro::lyser as an <em>in situ</em> laboratory instrument, there is no carrier fluid for rinsing between samples. To minimize cross contamination between samples, the idea we developed was to reverse flow and purge the instrument cuvette from its water instead. This is the reason for using a peristaltic pump. Now water can be purged either to the sampling port or to a port dedicated to waste.</p>
-<p>This addresses the cross contamination, but not the fouling that may occur as is often the case on the instrument optics. For this reason, the MUX has an embedded rinsing procedure where it is possible to use acid or other solutions for rinsing. The overall general MUX-sensor setup is summarized in Figure <a href="how-it-works-1.html#fig:WorkLayout">3.1</a> below.</p>
+<p>This addresses the cross contamination, but not the fouling that may occur as is often the case on the instrument optics. For this reason, the MUX has an embedded rinsing procedure where it is possible to use acid or other solutions for rinsing. The overall general MUX-sensor setup is summarized in Figure <a href="the-mux-sensor-system.html#fig:WorkLayout">3.1</a> below.</p>
 <div class="figure" style="text-align: center"><span id="fig:WorkLayout"></span>
 <img src="pictures/WorkLayout.png" alt="The MUX in relationship with the sampling points, rinsing solutions, the instrument and its flow-through cuvette, and a sample loop" width="80%" />
 <p class="caption">
 Figure 3.1: The MUX in relationship with the sampling points, rinsing solutions, the instrument and its flow-through cuvette, and a sample loop
 </p>
 </div>
-<p>In Figure <a href="how-it-works-1.html#fig:WorkLayout">3.1</a> above, <em>n</em> sampling ports are activated, while two of the ports are dedicated to a <em>rinsing solution 1</em> and a <em>rinsing solution 2</em>. The MUX has 12 sampling ports and a 13<sup>th</sup> port for waste if desired. The number or rinsing solutions used, therefore reduces the number of available ports for measured points. In the case of Figure <a href="how-it-works-1.html#fig:WorkLayout">3.1</a> above, a maximum of 12 - 2 = 10 ports remain available for point sampling.</p>
+<p>In Figure <a href="the-mux-sensor-system.html#fig:WorkLayout">3.1</a> above, <em>n</em> sampling ports are activated, while two of the ports are dedicated to a <em>rinsing solution 1</em> and a <em>rinsing solution 2</em>. The MUX has 12 sampling ports and a 13<sup>th</sup> port for waste if desired. The number or rinsing solutions used, therefore reduces the number of available ports for measured points. In the case of Figure <a href="the-mux-sensor-system.html#fig:WorkLayout">3.1</a> above, a maximum of 12 - 2 = 10 ports remain available for point sampling.</p>
 <p>Sampled water from any sampling point, including the rinsing solutions, can be purged to any port, including the dedicated waste port (port 13 in the MUX box), or the same port used for sampling, or any other port of the user’s choice.</p>
 <p>At the instrument, water is pumped through a flow-through cuvette. This allows to pump water beyond the cuvette and allow for rinsing of the whole manifold and of the cuvette with the new sample. We have found that a good practice to minimize cross contamination is to pump water at least 4 times beyond the volume of the cuvette. For use with the Spectro::lyser with a 35 mm opening, we recommend to use the cuvette 1-Q-10/SBTX2-8/10X20 from Starnacell<sup>®</sup>. It has a 10 mm path length, is made of quartz, which lets the UV light through, and has a large collar, which make cleaning much easier.</p>
 <p>Eventually during a measurement campaign, it is necessary to compare the instrument measured concentrations to those of the laboratory. For this, it is sometimes a good idea to add a <em>sampling spool</em> made of tubing curled together. We recommend that the spool allows for large enough a volume corresponding to the one needed for lab analyses, but small enough such that the initial water that has served to rinse the MUX and the cuvette be beyond the spool such that when purging only ‘clean water’ be used for lab sampling.</p>
@@ -158,11 +152,25 @@ Figure 3.1: The MUX in relationship with the sampling points, rinsing solutions,
 <div id="basic-sequence-of-events" class="section level3">
 <h3><span class="header-section-number">3.2.2</span> Basic sequence of events</h3>
 <p>In the MUX <em>config.txt</em> file (see further details later), the user specifies the desired sampling interval. During initialization, the MUX puts the Spectro::lyser in <em>logger mode</em>, which means that the instrument will, with no live connection to a computer, automatically take measurements at the indicated time interval.</p>
-<p>The Spectro::lyser sequence of actions (Figure <a href="how-it-works-1.html#fig:BasicSequence">3.2</a>) is thus to first send a 12V signal measurable at the ‘valve’ output in the Con::nect box. Again, this is the way the Spectro::lyser deals with fouling. After a given time, referred to as <em>clean wait</em> in the <em>config.txt</em> file and in Figure <a href="how-it-works-1.html#fig:WorkLayout">3.1</a>, the instrument takes a measurement. A measurement consists in two series of light bursts accompanied by a series of beeps. There are about 9 seconds between the first and the last beep. After that, it takes the Spectro::lyser about 25 seconds to analyze its measurements and make available its absorbance fingerprint and its calculated concentrations.</p>
+<p>The Spectro::lyser sequence of actions (Figure <a href="the-mux-sensor-system.html#fig:BasicSequence">3.2</a>) is thus to first send a 12V signal measurable at the ‘valve’ output in the Con::nect box. Again, this is the way the Spectro::lyser deals with fouling. After a given time, referred to as <em>clean wait</em> in the <em>config.txt</em> file and in Figure <a href="the-mux-sensor-system.html#fig:WorkLayout">3.1</a>, the instrument takes a measurement. A measurement consists in two series of light bursts accompanied by a series of beeps. There are about 9 seconds between the first and the last beep. After that, it takes the Spectro::lyser about 25 seconds to analyze its measurement and make available its absorbance fingerprint and its calculated concentrations (Figure <a href="the-mux-sensor-system.html#fig:BasicSequence">3.2</a>).</p>
 <div class="figure" style="text-align: center"><span id="fig:BasicSequence"></span>
 <img src="pictures/BasicSequence.png" alt="The MUX in relationship with the sampling points, rinsing solutions, the instrument and its flow-through cuvette, and a sample loop" width="80%" />
 <p class="caption">
 Figure 3.2: The MUX in relationship with the sampling points, rinsing solutions, the instrument and its flow-through cuvette, and a sample loop
+</p>
+</div>
+<p>The idea with the MUX is to have water to be analyzed in the measuring chamber or cuvette when the Spectro::lyser does its measurement. Once the MUX ‘hears’ the <em>cleaning signal</em> from the Spectro::lyser (Figure <a href="the-mux-sensor-system.html#fig:BasicSequence">3.2</a>), it starts its pumping for a <em>pump time</em> defined in the <em>config.txt</em> file. The <em>pump time</em> corresponds to the time it takes for water to go from its sampling point to the instrument cuvette, to which one must add the number of seconds necessary to rinse the equivalent of at least 4-5 times the cuvette volume. For some applications, there is no limit on the available volume of water to be analyzed. In these cases, one might want to add 5-6 seconds more on the <em>pump time</em>. For other applications, the available volume might be limited, and it might be necessary to limit the pump time to the strict minimum prescribed here.</p>
+<p>The <em>pump time</em> and the <em>clean wait</em> times are thus intrinsically linked. The <em>clean wait</em> time has to be equal to the pump time plus at least 5 seconds to let water in the cuvette ‘rest’ and let all micro air bubbles to stop moving to obtain a reliable and consistent reading by the Spectro::lyser. Keep in mind that there are about 1-2 seconds delay between the <em>cleaning signal</em> and the time when the pumping starts (Figure <a href="the-mux-sensor-system.html#fig:BasicSequence">3.2</a>).</p>
+<p>There are two important things to realize here:</p>
+<ol style="list-style-type: decimal">
+<li><p>In reality, the <em>pump time</em> may vary from sampling point to the next as it is preferable to pump the least amount of time per port to save energy and pump tubing. The <em>pump time</em> for each port is defined in the <em>config.txt</em> file. However, the <em>clean wait</em> time corresponds to a parameter from the Spectro::lyser, and the same value applies to all sampling points. As a result, the <em>clean wait</em> time <strong>must correspond to the longest <em>pump time</em> + 5 seconds</strong> (Figure <a href="the-mux-sensor-system.html#fig:TimingsSeveralPorts">3.3</a>).</p></li>
+<li><p>Because it always takes the same amount of time between the <em>cleaning signal</em> and the last beep of the Spectro::lyser measurement, and, because the <em>pump time</em> may vary from one sampling point to the next, the (on the MUX side) <strong>sum of <em>pump time</em> + the MUX <em>measurement time</em></strong> should also be the same and be equal to (on the Spectro::lyser side) <strong>the <em>clean wait</em> time + the 9 sec. of measurement time + at least 2 seconds past the last measurement</strong> (Figure <a href="the-mux-sensor-system.html#fig:TimingsSeveralPorts">3.3</a>).</p></li>
+</ol>
+<p>As a result, the <em>measurement time</em> from the MUX must be adjusted (in the <em>config.txt</em> file) accordingly as illustrated in Figure <a href="the-mux-sensor-system.html#fig:TimingsSeveralPorts">3.3</a></p>
+<div class="figure" style="text-align: center"><span id="fig:TimingsSeveralPorts"></span>
+<img src="pictures/TimingsSeveralPorts.png" alt="The MUX in relationship with the sampling points, rinsing solutions, the instrument and its flow-through cuvette, and a sample loop" width="80%" />
+<p class="caption">
+Figure 3.3: The MUX in relationship with the sampling points, rinsing solutions, the instrument and its flow-through cuvette, and a sample loop
 </p>
 </div>
 
@@ -181,7 +189,7 @@ Figure 3.2: The MUX in relationship with the sampling points, rinsing solutions,
         </div>
       </div>
 <a href="intro.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="methods.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -211,7 +219,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/02-how-it-works.Rmd",
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/02-MUX-sensor-system.Rmd",
 "text": "Edit"
 },
 "history": {
