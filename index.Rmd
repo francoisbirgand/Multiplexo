@@ -29,3 +29,10 @@ In theory, it is very simple. In practice, we have discovered that it takes a lo
 
 ## The versions available
 Right now, we have three versions available. One specifically dedicated to work with the S::CAN field spectrophotometer called Spectro::lyser, one version that works with any sensor, and, a third version coupled with a synchronous syringe based sampler designed to sample rather small volumes of water at very low pumping rates (~around 1 ml/min).
+
+## Downloads
+
+- Download the [SpectroMUX.pdf here](https://francoisbirgand.github.io/Multiplexo/MUXManual.pdf)
+
+- Download the [epub version here](https://francoisbirgand.github.io/Multiplexo/MUXManual.epub)
+

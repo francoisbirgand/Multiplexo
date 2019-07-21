@@ -127,6 +127,16 @@ In theory, it is very simple. In practice, we have discovered that it takes a lo
 
 Right now, we have three versions available. One specifically dedicated to work with the S::CAN field spectrophotometer called Spectro::lyser, one version that works with any sensor, and, a third version coupled with a synchronous syringe based sampler designed to sample rather small volumes of water at very low pumping rates (\textasciitilde{}around 1 ml/min).
 
+\hypertarget{downloads}{%
+\section{Downloads}\label{downloads}}
+
+\begin{itemize}
+\item
+  Download the \href{https://francoisbirgand.github.io/Multiplexo/MUXManual.pdf}{SpectroMUX.pdf here}
+\item
+  Download the \href{https://francoisbirgand.github.io/Multiplexo/MUXManual.epub}{epub version here}
+\end{itemize}
+
 \hypertarget{intro}{%
 \chapter{How to hook things together}\label{intro}}
 
@@ -300,8 +310,8 @@ General functioning on/off
 \hypertarget{trouble-shooting}{%
 \section{Trouble shooting}\label{trouble-shooting}}
 
-\hypertarget{the-mux-sensor-system}{%
-\chapter{The MUX-sensor system}\label{the-mux-sensor-system}}
+\hypertarget{the-mux-sensor-functioning}{%
+\chapter{The MUX-sensor functioning}\label{the-mux-sensor-functioning}}
 
 \hypertarget{the-general-design-principles-for-the-mux}{%
 \section{The general design principles for the MUX}\label{the-general-design-principles-for-the-mux}}
@@ -444,12 +454,360 @@ A \emph{sampling cycle} is the name we have given for a series of \emph{sampling
 The advantage of inserting air or DI water in the \emph{sampling cycle} is that in addition to the aid it provides to identify each cycle in the fingerprint time series, it also gives an estimate of the fouling of the cuvette or the optics. To insert and \emph{air} measurement in the \emph{sampling cycle}, the user can use `port 13' in the \emph{config.txt} file as it is used for waste and is therefore open to the atmosphere. To insert an \emph{DI} measurement, the user has to have a dedicated port sampling DI from an container with enough DI volume to cover the field visit intervals.
 
 \hypertarget{programing-the-mux}{%
-\chapter{Programing The MUX}\label{programing-the-mux}}
+\chapter{Programing the MUX}\label{programing-the-mux}}
 
-\hypertarget{the-config-file}{%
-\section{\texorpdfstring{The \emph{config} file}{The config file}}\label{the-config-file}}
+\hypertarget{the-sd-card-in-the-control-box}{%
+\section{The SD card in the control box}\label{the-sd-card-in-the-control-box}}
 
-All the instructions for programing the MUX are consigned in the \emph{config.txt} file, itself located on the SD card
+All the instructions for programing the MUX are consigned in the \emph{config.txt} file, itself located on the micro SD card. The SD card can be retrieved by opening the control box. One may use the macro SD card adapter provided to read the SD card on a computer (Figure \ref{fig:ControlBoxSDCard}).
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.7\linewidth]{pictures/ControlBoxSDCard} 
+
+}
+
+\caption{Location of the SD card in the control box of the MUX}\label{fig:ControlBoxSDCard}
+\end{figure}
+
+\hypertarget{the-config.txt-file}{%
+\section{\texorpdfstring{The \emph{config.txt} file}{The config.txt file}}\label{the-config.txt-file}}
+
+All the instructions for the sampling sequences are provided in the \emph{config.txt}. A typical basic \emph{config.txt} file looks like in Figure \ref{fig:ConfigBasic} below. In this particular example, there are 12 valves activated in a \emph{sampling cycle} ranked in increasing order from 1 to 12. The order of the valves can be completely interchanged and the \emph{sampling cycle} will go followin the prescribed order.
+
+\begin{figure}
+
+\includegraphics[width=0.6\linewidth]{pictures/ConfigBasic} \hfill{}
+
+\caption{Typical *config.txt* file where 12 ports are activated, with no automatic rinsing}\label{fig:ConfigBasic}
+\end{figure}
+
+\hypertarget{programming-the-mux-sampling-sequence-without-automatic-rinsing}{%
+\subsection{\texorpdfstring{Programming the MUX \emph{sampling sequence} without automatic rinsing}{Programming the MUX sampling sequence without automatic rinsing}}\label{programming-the-mux-sampling-sequence-without-automatic-rinsing}}
+
+The commands for the \emph{sampling sequences} for each \emph{sampling cycle} are given in the first 6 lines of the \emph{config.txt} file (Figure \ref{fig:ConfigBasicMUXPart}). Each variable between \texttt{\textless{}...\textgreater{}} defines the name of the variable used in the program, and all numbers between \texttt{{[}...{]}} define the array of values to be used. The values in one array correspond to all the values necessary for a \emph{sampling cycle}.
+
+\begin{figure}
+
+\includegraphics[width=0.6\linewidth]{pictures/ConfigBasicMUXPart} \hfill{}
+
+\caption{The commands for the MUX sampling sequence timing are provided in the first 6 lines of the *config.txt* (12 ports are activated, with no automatic rinsing)}\label{fig:ConfigBasicMUXPart}
+\end{figure}
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{\textless{}VALVES\ PUMPING\textgreater{}} defines the list and its order of the valves or port which will be activated during \emph{pumping} of the \emph{sampling cycles}. In the example of Figure \ref{fig:ConfigBasicMUXPart}, the \emph{sampling cycles} inclues all valves from 1 to 12 in that order.
+\item
+  \texttt{\textless{}VALVES\ PURGING\textgreater{}} defines the list and its order of the valves or port which will be activated during the \emph{purging} phase of each \emph{sampling sequence} of the \emph{sampling cycle}. In the particular example of Figure \ref{fig:ConfigBasicMUXPart}, all water is purged back to \emph{its source} as the same valve is used during \emph{pumping} and \emph{purging}.
+\item
+  \texttt{\textless{}PUMP\ TIMES\textgreater{}} defines the array of values in seconds that will be used for the \emph{pumping} in each \emph{sampling sequence} corresponding to the \emph{pumping} valve activated.
+\item
+  \texttt{\textless{}MEASUREMENT\ TIMES\textgreater{}} defines the array of values in seconds that will be used for each \emph{sampling sequence} and corresponding to the activated valve.
+\item
+  \texttt{\textless{}PURGE\ TIMES\textgreater{}} defines the array of values in seconds that will be used for the \emph{purping} in each \emph{sampling sequence} corresponding to the \emph{purging} valve activated.
+\item
+  \texttt{\textless{}STEPS\textgreater{}{[}1{]}} means that there is no automatic rinsing. Technically, it defines the fact that the program will read each array and each cleaning signal will activate the next \texttt{{[}1{]}} (one) value in the array. In other words, the program will read the next value in the array to be used upon a \emph{cleaning signal} (more details later).
+\end{itemize}
+
+For illustration purposes, the text of the \emph{config.txt} file have been colored. In the current example (Figure \ref{fig:ConfigBasicMUXPart}), in the \emph{sampling cycle}, the first \emph{sampling sequence} starts with pumping from valve 1 for 15 seconds, waits for 30 sec for the Spectro::lyser to do its measurement, then purge to through the same valve 1 for 17 seconds, i.e., 2 seconds more than pumping to remove as many drops as possible. Because the \texttt{\textless{}STEPS\textgreater{}} is set to 1, the MUX waits for the next Spectro::lyser \emph{cleaning signal} to start its next \emph{sampling sequence}.
+
+By analogy, the 7\textsuperscript{th} \emph{sampling sequence} starts with pumping from valve 7 for 29 seconds, waits for 16 sec for the Spectro::lyser to do its measurement, then purge to through the same valve 7 for 31 seconds, i.e., 2 seconds more than pumping to remove as many drops as possible.
+
+\begin{itemize}
+\item
+  Notice that for all activated valves, \texttt{\textless{}PUMP\ TIMES\textgreater{}\ +\ \textless{}MEASUREMENT\ TIMES\textgreater{}} is always equal to 45 seconds, and the 45 seconds corresponds to the longest \emph{pumping time} (30 sec, corresponding to valve 6 in the example), plus 5 seconds of no pumping for all gas bubbles to settle, plus 9 seconds for the Spectro::lyser measurement to take place. The current setting suggests that the MUX would start its purging not even one second after the last beep of the Spectro::lyser measurement\ldots{} That would work, but honestly there is advantage to do that. So adding several seconds more in the measurement timings would probably be more judicious and safer to make sure water is still in the cuvette for the full measurement.
+\item
+  Also notice that the \texttt{\textless{}PUMP\ TIMES\textgreater{}\ +\ \textless{}MEASUREMENT\ TIMES\textgreater{}} is equal to the \texttt{\textless{}CLEAN\ WAIT\textgreater{}} (Figure \ref{fig:ConfigBasic}) value minus 5 seconds corresponding to the minimum of time for bubbles to settle for the longest pumping time (more details below)
+\end{itemize}
+
+\hypertarget{programming-the-mux-sampling-sequence-with-two-automatic-rinsing-and-a-waste-port}{%
+\subsection{\texorpdfstring{Programming the MUX \emph{sampling sequence} with two automatic rinsing, and a waste port}{Programming the MUX sampling sequence with two automatic rinsing, and a waste port}}\label{programming-the-mux-sampling-sequence-with-two-automatic-rinsing-and-a-waste-port}}
+
+The next example illustrates more complicated options. The user wants to use points 10, 1, 3, 8, 9, 2 in that order in a \emph{sampling cycle} and wants to add an \emph{air tracer measurement}. The user does not want to purge water back to the sampling point, but rather, wants to purge all water to a waste port, which incidently can be used for lab sampling purposes. The user also wants to use two automatic rinsing, the first one with acid where acid would stay in the cuvette for 55 seconds to leave enough reaction time, and the second one with DI to rinse the acid off.
+
+The MUX could be programed as illustrated in Figure \ref{fig:Config2rinsesMUXPart} below.
+
+\begin{figure}
+
+\includegraphics[width=0.8\linewidth]{pictures/Config2rinsesMUXPart} \hfill{}
+
+\caption{Programing for 6 ports and an air measurement, purging to waste, and two automatic rinsing}\label{fig:Config2rinsesMUXPart}
+\end{figure}
+
+\begin{itemize}
+\tightlist
+\item
+  Notice that \texttt{\textless{}STEPS\textgreater{}} value is set to 3. This means that the MUX \emph{sampling sequence} will be activated by the \emph{cleaning signal} every 3 values of the arrays (the text in black in Figure \ref{fig:Config2rinsesMUXPart}). In between, the green and red values, are automatically activated during the \emph{sampling sequence}, and correspond here to the two rinsing desired. The green values corresponds to the values for the acid rinse, and the red values correspond to the DI rinse.
+\item
+  The activated sampling ports (other than rinsing) of the \emph{sampling cycle} are defined in the \texttt{\textless{}VALVES\ PUMPING\textgreater{}} array and appear in black in Figure \ref{fig:Config2rinsesMUXPart}. Their list is thus 10, 1, 3, 8, 9, 2, and 13. The last one, 13, corresponds to the waste port open to the atmosphere, which means that it can be used for `air tracer measurement'.
+\item
+  The port used for purging of the sampled points (other than rinsing) also appears in black in the \texttt{\textless{}VALVES\ PURGING\textgreater{}}
+  array, and is always 13.
+\item
+  The pump times, measurement times, and purge times for the sampled points are illustrated in black, respectively, in the \texttt{\textless{}PUMP\ TIMES\textgreater{}}, \texttt{\textless{}MEASUREMENT\ TIMES\textgreater{}}, and \texttt{\textless{}PURGE\ TIMES\textgreater{}} arrays (Figure \ref{fig:Config2rinsesMUXPart})
+\item
+  The acid rinse will be pumped and purged from and to port 11 everytime. There often no need to purge acid to waste. Although, the low strength of the acid would not damage the environment, it is preferable to purge back to its bottle to save acid. The dilution by water droplets will not affect acid strength and anti-fouling efficacy.
+\item
+  To leave acid in the cuvette for 55 seconds, the user add 55 sec.~in the \texttt{\textless{}MEASUREMENT\ TIMES\textgreater{}} array.
+\item
+  The DI water rinse is always pumps from port 12 in the example from a designated DI water jar. In the example, the DI water is purged to the waste port 13. This implies that a lrge enough DI water container be used to have enough between field service intervals.
+\item
+  The amount of time DI water stays in the cuvette does not matter as much as acid here and a value of 4 seconds has been chosen in the example.
+\item
+  During the air measurements, the pumping and purging times are kept to a minimum (2 sec.) to minimize energy spending and peristaltic pump wear. The measurement time (black value) is set to 43 seconds to stay in sequence with the other \emph{sampling sequences} although it could have been shortened as well.
+\end{itemize}
+
+\hypertarget{the-spectrolyser-values-in-the-config.txt-file}{%
+\subsection{\texorpdfstring{The Spectro::lyser values in the \emph{config.txt} file}{The Spectro::lyser values in the config.txt file}}\label{the-spectrolyser-values-in-the-config.txt-file}}
+
+The next five lines in the \emph{config.txt} file give instructions to the Spectro::lyser on the values to use when going into the \emph{logger mode} (Figure \ref{fig:ConfigScan}).
+
+\begin{figure}
+
+\includegraphics[width=0.6\linewidth]{pictures/ConfigScan} \hfill{}
+
+\caption{The parameters in the *config.txt* to pilot the Spectro::lyser}\label{fig:ConfigScan}
+\end{figure}
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{\textless{}LOG\ INT\textgreater{}} defines the interval in seconds, at which the Spectro::lyser will take a measurement and logs its value. It also corresponds to the interval at which the Spectro::lyser sends a \emph{cleaning signal}, which in the end corresponds at the time interval between two \emph{sampling sequences}. The time interval on each sampled point will be the recurring interval of a \emph{sampling cycle}.
+\item
+  \texttt{\textless{}CLEAN\ INT\textgreater{}} defines the number of \emph{logging intervals} or measurements from the Spectro::lyser there are before it sends a \emph{cleaning signal}. This does not apply to our use, as we want to have a \emph{cleaning signal} sent everytime the Spectro::lyser takes a measurement. ALWAYS set it to 1.
+\item
+  \texttt{\textless{}CLEAN\ DUR\textgreater{}} defines the number of seconds the 12V cleaning signal coming from the Spectro::lyser is on.
+\item
+  \texttt{\textless{}CLEAN\ WAIT\textgreater{}} defines the number of seconds between the beginning of the \emph{cleaning signal} and the first beep of the Spectro::lyser measurement. \textbf{The duration of this value is linked to the \emph{pumping times}, and must be equal, at least, to the \emph{longest} pumping time of the \emph{sampling cycle}, plus 5 seconds to leave time for air bubbles to settle}.
+\item
+  \texttt{\textless{}MUX\ ON\textgreater{}} has to be set at 1. It corresponds to a feature obsolete with the current version of MUX.
+  \texttt{\textless{}AUTORESET\textgreater{}} this option defines whether the user wants the system to autorest at midnight everyday. We recommend to use this option (set to {[}1{]}), as it allows the MUX to clean up its memory. If the user prefers not to use this option, then set to {[}0{]}.
+\end{itemize}
+
+\hypertarget{delayed-start}{%
+\subsection{Delayed start}\label{delayed-start}}
+
+In many situations, it might be of advantage not to start sampling when the users are in the field, but rather start at a later time. Similarly, the user might want to stop the system before being able to come to the field to retrieve data. This what the delayed start and end are for. If the user does not want the delayed start and end, set \texttt{\textless{}DELAYED\ START\textgreater{}} and \texttt{\textless{}DELAYED\ END\textgreater{}} to {[}0{]}.
+
+When the user wants a delayed start, set \textbf{both} \texttt{\textless{}DELAYED\ START\textgreater{}} and \texttt{\textless{}DELAYED\ END\textgreater{}} to {[}1{]}. The start time is defined in \texttt{\textless{}START\ TIME\textgreater{}} as {[}YY,MM,DD,HH,mm,SS{]}. When the user does not want the system to end until the next field visit, set the \texttt{\textless{}END\ TIME\textgreater{}} to several years later. An example is given below in Figure \ref{fig:ConfigDelay}.
+
+\begin{figure}
+
+\includegraphics[width=0.5\linewidth]{pictures/ConfigDelay} \hfill{}
+
+\caption{Example of delayed start on the *config.txt* file}\label{fig:ConfigDelay}
+\end{figure}
+
+\hypertarget{examples-of-config.txt-files}{%
+\section{\texorpdfstring{Examples of \emph{config.txt} files}{Examples of config.txt files}}\label{examples-of-config.txt-files}}
+
+\hypertarget{sampling-cycles-with-no-rinsing}{%
+\subsection{Sampling cycles with no rinsing}\label{sampling-cycles-with-no-rinsing}}
+
+\begin{itemize}
+\tightlist
+\item
+  12 sampling ports in 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 order.
+\item
+  same purging ports
+\item
+  Five minutes \emph{sampling sequence} intervals
+\item
+  60 time resolution for each sampled point
+\end{itemize}
+
+\begin{verbatim}
+<VALVES PUMPING>[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+<VALVES PURGING>[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+<PUMP TIMES>[15, 20, 25, 22, 21, 30, 29, 26, 23, 28, 16, 17]
+<MEASUREMENT TIMES>[30, 25, 20, 23, 24, 15, 16, 19, 22, 17, 29, 28]
+<PURGE TIMES>[17, 22, 27, 24, 23, 32, 31, 28, 25, 30, 18, 19]
+<STEPS>[1]
+<LOG INT>[150]
+<CLEAN INT>[1]
+<CLEAN DUR>[5]
+<CLEAN WAIT>[35]
+<MUX ON>[1]
+<AUTORESET>[1]
+<DELAYED START>[0]
+<START TIME>[19, 07, 05, 13, 32, 00]
+<DELAYED END>[0]
+<END TIME>[19, 07, 05, 13, 37, 00]
+\end{verbatim}
+
+\hypertarget{sampling-cycles-with-one-rinse}{%
+\subsection{Sampling cycles with one rinse}\label{sampling-cycles-with-one-rinse}}
+
+\begin{itemize}
+\tightlist
+\item
+  4 sampling ports in 1, 3, 5, 7 order, no tracer measurement (not recommended)
+\item
+  one automatic (e.g., DI water) rinse on port 2
+\item
+  same purging ports
+\item
+  Three minutes \emph{sampling sequence} intervals
+\item
+  12 time resolution for each sampled point
+\end{itemize}
+
+\begin{verbatim}
+<VALVES PUMPING>[1, 2, 3, 2, 5, 2, 7, 2]
+<VALVES PURGING>[1, 2, 3, 2, 5, 2, 7, 2]
+<PUMP TIMES>[10, 5,10, 5,10, 5,10, 5]
+<MEASUREMENT TIMES>[12, 3, 12, 3, 12, 3, 12, 3]
+<PURGE TIMES>[10, 3, 10, 3, 10, 3, 10, 3]
+<STEPS>[2]
+<LOG INT>[180]
+<CLEAN INT>[1]
+<CLEAN DUR>[5]
+<CLEAN WAIT>[12]
+<MUX ON>[1]
+<AUTORESET>[1]
+<DELAYED START>[0]
+<START TIME>[19, 07, 06, 06, 08, 00]
+<DELAYED END>[0]
+<END TIME>[19, 07, 06, 13, 37, 00]
+\end{verbatim}
+
+\hypertarget{sampling-cycles-with-one-rinse-1}{%
+\subsection{Sampling cycles with one rinse}\label{sampling-cycles-with-one-rinse-1}}
+
+\begin{itemize}
+\tightlist
+\item
+  4 sampling ports in 1, 3, 5, 7 order, one air tracer measurement (recommended)
+\item
+  one automatic (e.g., DI water) rinse on port 2
+\item
+  All purging on port 13
+\item
+  Three minutes \emph{sampling sequence} intervals
+\item
+  15 time resolution for each sampled point
+\end{itemize}
+
+\begin{verbatim}
+<VALVES PUMPING>[1, 2, 3, 2, 5, 2, 7, 2, 13, 2]
+<VALVES PURGING>[13, 2, 13, 2, 13, 2, 13, 2, 13, 2]
+<PUMP TIMES>[10, 5,10, 5,10, 5,10, 5, 2, 2]
+<MEASUREMENT TIMES>[12, 3, 12, 3, 12, 3, 12, 3, 2, 2]
+<PURGE TIMES>[10, 3, 10, 3, 10, 3, 10, 3, 2, 2]
+<STEPS>[2]
+<LOG INT>[180]
+<CLEAN INT>[1]
+<CLEAN DUR>[5]
+<CLEAN WAIT>[12]
+<MUX ON>[1]
+<AUTORESET>[1]
+<DELAYED START>[0]
+<START TIME>[19, 07, 06, 06, 08, 00]
+<DELAYED END>[0]
+<END TIME>[19, 07, 06, 13, 37, 00]
+\end{verbatim}
+
+\hypertarget{sampling-cycles-with-one-rinse-2}{%
+\subsection{Sampling cycles with one rinse}\label{sampling-cycles-with-one-rinse-2}}
+
+\begin{itemize}
+\tightlist
+\item
+  4 sampling ports in 10, 1, 3, 8, 9, 2, and one air (13) tracer measurement (recommended)
+\item
+  two automatic, e.g., acid or port 11, followed by DI water rinse on port 12
+\item
+  All purging on port 13, but for acid back to port 11
+\item
+  Because of the two rinses, the interval between two \emph{sampling sequences} has to be a bit longer, in fact longer than the summation of the (pumping time + measurement time), the acid (pumping, stay in cuvette, purging) times, and the DI water (pumping, stay in cuvette, purging) times. That sum is equal to 164 seconds. So technically, one could set the log interval to 180 seconds. However, in practice, this would mean that the MUX would be pumping and purging a lot of the time, drawing lots of power and wearing out the peristaltic pump tubing. The user must also assess whether 30 min or hourly data is in fact plenty enough.
+\item
+  Five minutes \emph{sampling sequence} intervals
+\item
+  35 time resolution for each sampled point
+\end{itemize}
+
+\begin{verbatim}
+<VALVES PUMPING>[10, 11, 12, 1, 11, 12, 3, 11, 12, 8, 11, 12, 9, 11, 12, 2, 11, 12, 13, 11, 12]
+<VALVES PURGING>[13, 11, 13, 13, 11, 13, 13, 11, 13, 13, 11, 13, 13, 11, 13, 13, 11, 13 , 13, 11, 12]
+<PUMP TIMES>[28, 14, 14, 15, 14, 14, 25, 14, 14, 26, 14, 14, 23, 14, 14, 20, 14, 14, 2, 2, 2]
+<MEASUREMENT TIMES>[17, 55, 4, 30, 55, 4, 20, 55, 4, 19, 55, 4, 22, 55, 4, 25, 55, 4 , 43, 2, 2]
+<PURGE TIMES>[29, 17, 16, 1, 17, 16, 3, 17, 16, 8, 17, 16, 9, 17, 16, 2, 17, 16 , 20, 14, 14 , 2, 4, 4]
+<STEPS>[3]
+<LOG INT>[300]
+<CLEAN INT>[1]
+<CLEAN DUR>[5]
+<CLEAN WAIT>[33]
+<MUX ON>[1]
+<AUTORESET>[1]
+<DELAYED START>[0]
+<START TIME>[19, 07, 06, 06, 08, 00]
+<DELAYED END>[0]
+<END TIME>[19, 07, 06, 13, 37, 00]
+\end{verbatim}
+
+\hypertarget{the-files-saved-on-the-sd-card}{%
+\chapter{The files saved on the SD card}\label{the-files-saved-on-the-sd-card}}
+
+\hypertarget{the-mux-log-files}{%
+\section{The MUX log files}\label{the-mux-log-files}}
+
+All activities from the MUX are saved on a file named \emph{YYMM-MUX.txt}, with YY for the year, and MM for the month. A typical example of the content of the \emph{MUX.txt} file is illustrated below:
+
+\begin{verbatim}
+2019/7/4 10:32:36, 10, Forward, 10, 20, 5, Automatic - Start!
+2019/7/4 10:33:06, 8, Reverse, 10, 20, 5, Automatic
+2019/7/4 10:33:12, 2, Forward, 3, 15, 3, Automatic
+2019/7/4 10:33:30, 2, Reverse, 3, 15, 3, Automatic
+2019/7/4 10:35:35, 1, Forward, 15, 10, 8, Automatic
+2019/7/4 10:36:00, 8, Reverse, 15, 10, 8, Automatic
+2019/7/4 10:36:09, 2, Forward, 3, 20, 3, Automatic
+2019/7/4 10:51:36, 10, Forward, 10, 20, 5, Automatic - Start!
+2019/7/4 10:52:06, 8, Reverse, 10, 20, 5, Automatic
+2019/7/4 10:52:12, 2, Forward, 3, 2, 3, Automatic
+2019/7/4 10:52:17, 2, Reverse, 3, 2, 3, Automatic
+2019/7/4 10:52:20, 7, Forward, 3, 2, 4, Automatic
+2019/7/4 10:52:25, 3, Reverse, 3, 2, 4, Automatic
+2019/7/4 10:53:36, 1, Forward, 15, 15, 8, Automatic
+2019/7/4 10:54:06, 8, Reverse, 15, 15, 8, Automatic
+2019/7/4 10:54:15, 2, Forward, 3, 2, 3, Automatic
+2019/7/4 10:54:20, 2, Reverse, 3, 2, 3, Automatic
+2019/7/4 10:54:23, 7, Forward, 3, 2, 4, Automatic
+\end{verbatim}
+
+On each line of the file, the first value is the time stamp of any pumping (\emph{Forward}) or purging (\emph{Reverse}) action. The next value is the valve or port that is activated. The next value is whether the pump pumped forward or purged for purging. The next three values correspond to . The next value tells whether the MUX actions were automatic, or whether the pumping and purging were done manually. When the MUX is started by turning the on/off button, or when the MUX is automatically reset at midnight, these actions are flagged by a `- Start!' at the end of the line.
+
+This log file is very useful when trouble shooting and to corroborate information stored on the \emph{.fp} file.
+
+\hypertarget{the-fingerprint-files}{%
+\subsection{The fingerprint files}\label{the-fingerprint-files}}
+
+The fingerprint files are a copy on the SD card of the fingerprint (.fp) stored by the Spectro::lyser. Until very recently, there was very limited memory space on the Spectro::lyser, leaving about three days of autonomy for 3-min measurements\ldots{} As a result, the MUX automatically interrogates the Spectro::lyser after each \emph{sampling sequence} and asks the Spectro::lyser to give the last absorbance spectrum stored in its memory, and appends it at the end of an \emph{.fp} file on the SD card.
+
+An example of the such \emph{.fp} file is illustrated below. The first line defines which Spectro::lyser is used. The second line defines the Date/time, then status (OK or not), and then the wavelengths at which the absorbances are measured. In our case here, from 200.00 to 750.00 nm. The next lines provide the Spectro::lyser time stamp, the status of the probe, the absorbance values corresponding to each wavelength, AND, at the end of the line, the valve used for pumping and the time stamp from the MUX. The \texttt{...} replace all the 200 and some intermediate values on each line.
+
+\begin{verbatim}
+17240013_50_0x0101_spectro::lyser_RIV100NFV2
+Date/Time   Status_0    200.00  202.50  ... 745.00  747.50  750.00
+2019.07.04  10:51:59    Ok  42.7532 41.6454 ... nan nan nan 10  19/7/4 10:52
+2019.07.04  10:51:59    Ok  42.7532 41.6454 ... nan nan nan 1   19/7/4 10:54
+2019.07.04  10:53:59    Ok  42.8591 41.7240 ... nan nan nan 3   19/7/4 10:56
+\end{verbatim}
+
+There is an identified bug, which we have not resolved satisfactorily on an automatic basis, yet. However, when aware of it, it can be easily resolved manually. At the end of its sampling sequence, the MUX inquires about the last measurement stored by the Spectro::lyser. In the meantime, in the Spectro::lyser sequence of actions (Figure \ref{fig:BasicSequence}), the time for analysis of the measured absorbance takes about 25 seconds. If the inquiring time, the Spectro::lyser has not finished analyzing its results, then the absorbance spectrum available on the Spectro::lyser memory is NOT the current measurement, but rather the \emph{previous} measurement. This is illustrated in the \emph{.fp} exert above. The fingerprint time stamp and values are exactly the same in third and fourth line of the file, although the MUX time stamp at the end of the lines have changed. This is because on the 10:54 measurement, the Spectro::lyser was still analyzing its measurement, and the available fingerprint on memory was the previous one. It is relatively easy to manually reassign the correct fingerprint to the correct port.
+
+Now, when the end of the \emph{sampling sequence} occurs \textbf{after} analysis of the Spectro::lyser, then the fingerprint available in the memory is the one corresponding to the MUX time stamp. In these cases, the Spectro::lyser fingerprint and MUX time stamps are synchroneous.
+
+\hypertarget{how-to-start-1}{%
+\chapter{How to start}\label{how-to-start-1}}
+
+\hypertarget{make-all-necessary-connections}{%
+\section{Make all necessary connections}\label{make-all-necessary-connections}}
+
+Needless to say, the MUX-sensor system will not work unless the connections are done in the Con::nect Box! Follow The instructions in part \ref{intro}.
+
+\hypertarget{section}{%
+\section{}\label{section}}
 
 \bibliography{book.bib,packages.bib}
 
