@@ -84,7 +84,7 @@
   \postauthor{\par}
       \predate{\centering\large\emph}
   \postdate{\par}
-    \date{2019-07-20}
+    \date{2019-07-22}
 
 \usepackage{booktabs}
 \usepackage{amsthm}
@@ -271,44 +271,6 @@ The Signal input and the communication wires coming from the Con::nect Box are p
 
 \caption{12 V Connection between the control box and the external plug}\label{fig:ControlBoxConnectionValveRS485}
 \end{figure}
-
-\hypertarget{how-it-works}{%
-\section{How it works}\label{how-it-works}}
-
-peristaltic pump
-
-change clock time
-
-Manual pump
-
-General functioning on/off
-
-\hypertarget{how-to-start}{%
-\section{How to start}\label{how-to-start}}
-
-\hypertarget{sd-card}{%
-\subsection{SD card}\label{sd-card}}
-
-\hypertarget{config-file}{%
-\subsection{Config file}\label{config-file}}
-
-\hypertarget{rinsing-options}{%
-\subsection{Rinsing options}\label{rinsing-options}}
-
-\hypertarget{how-to-change-the-clock}{%
-\section{How to change the clock}\label{how-to-change-the-clock}}
-
-\hypertarget{how-to-pump-manually}{%
-\section{How to pump manually}\label{how-to-pump-manually}}
-
-\hypertarget{how-to-trigger-the-mux-manually}{%
-\section{How to trigger the MUX manually}\label{how-to-trigger-the-mux-manually}}
-
-\hypertarget{the-files-you-get}{%
-\section{The files you get}\label{the-files-you-get}}
-
-\hypertarget{trouble-shooting}{%
-\section{Trouble shooting}\label{trouble-shooting}}
 
 \hypertarget{the-mux-sensor-functioning}{%
 \chapter{The MUX-sensor functioning}\label{the-mux-sensor-functioning}}
@@ -602,6 +564,8 @@ When the user wants a delayed start, set \textbf{both} \texttt{\textless{}DELAYE
 \hypertarget{examples-of-config.txt-files}{%
 \section{\texorpdfstring{Examples of \emph{config.txt} files}{Examples of config.txt files}}\label{examples-of-config.txt-files}}
 
+\textbf{Always make sure that there is the arrays in the \texttt{\textless{}VALVES\ PUMPING\textgreater{}}, \texttt{\textless{}VALVES\ PURGING\textgreater{}}, \texttt{\textless{}PUMP\ TIMES\textgreater{}}, \texttt{\textless{}MEASUREMENT\ TIMES\textgreater{}}, and \texttt{\textless{}PURGE\ TIMES\textgreater{}} all have the same number of values!!!}
+
 \hypertarget{sampling-cycles-with-no-rinsing}{%
 \subsection{Sampling cycles with no rinsing}\label{sampling-cycles-with-no-rinsing}}
 
@@ -798,16 +762,122 @@ There is an identified bug, which we have not resolved satisfactorily on an auto
 
 Now, when the end of the \emph{sampling sequence} occurs \textbf{after} analysis of the Spectro::lyser, then the fingerprint available in the memory is the one corresponding to the MUX time stamp. In these cases, the Spectro::lyser fingerprint and MUX time stamps are synchroneous.
 
-\hypertarget{how-to-start-1}{%
-\chapter{How to start}\label{how-to-start-1}}
+The naming conventions for the \emph{.fp} files are YMMDD\emph{letter}mm.fp. The \emph{letter a} is used for 0 hour, and \emph{x} for 23 hours. The hour corresponds to the hour at the time when the file was created.
+
+\hypertarget{how-to-start}{%
+\chapter{How to start}\label{how-to-start}}
 
 \hypertarget{make-all-necessary-connections}{%
 \section{Make all necessary connections}\label{make-all-necessary-connections}}
 
 Needless to say, the MUX-sensor system will not work unless the connections are done in the Con::nect Box! Follow The instructions in part \ref{intro}.
 
-\hypertarget{section}{%
-\section{}\label{section}}
+\hypertarget{ready-the-peristaltic-pump}{%
+\section{Ready the peristaltic pump}\label{ready-the-peristaltic-pump}}
+
+To preserve the peristatic pump tumbing when not in use, the pump has a nice feature to press or release the tubing from the rollers. At reception of the MUX, the tumbing is not pressed against the rollers. Follow the video \ref{fig:PeristalticPumpVideo} below to do this.
+
+\label{fig:PeristalticPumpVideo}How to press/release the peristaltic pump tubing against the rollers to activate/deactivate the pump
+
+\hypertarget{install-the-flow-through-cuvette}{%
+\section{Install the flow through cuvette}\label{install-the-flow-through-cuvette}}
+
+At this time, it is important to install the cuvette in its cuvette holder and install the cuvette holder on the Spectro::lyser, as illustrated in the Figures below.
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{pictures/Cuvette1} 
+
+}
+
+\caption{Flow through cuvette installed and its cuvette holder (not clean in the pictures here...)}\label{fig:Cuvette1}
+\end{figure}
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{pictures/Cuvette2} 
+
+}
+
+\caption{Flow through cuvette installed in its cuvette holder}\label{fig:Cuvette2}
+\end{figure}
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{pictures/CuvetteSpectro1} 
+
+}
+
+\caption{Flow through cuvette installed with the Spectro::lyser}\label{fig:CuvetteSpectro1}
+\end{figure}
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{pictures/CuvetteSpectro2} 
+
+}
+
+\caption{Full installation of the cuvette holder on the Spectro::lyser}\label{fig:CuvetteSpectro2}
+\end{figure}
+
+\hypertarget{turn-the-mux-on}{%
+\section{Turn the MUX on}\label{turn-the-mux-on}}
+
+To turn the MUX on, put the top left swith to the \texttt{ON} position. When the Spectro::lyser is connected to the Con::nect box, the MUX starts its routine identifying a \emph{XXXX-MUX.txt} file, and then identifies a \emph{.fp} file. If the SD card is missing, there will be an NA file for the \emph{XXXX-MUX.txt} file. If the Spectro::lyser is not connected, there will be an NA file for the \emph{.fp} file. See video \ref{fig:TurnOnVideo} for illustration
+
+\label{fig:TurnOnVideo}Illustration of initialization phase
+
+\hypertarget{test-the-mux-in-the-lab}{%
+\section{Test the MUX in the lab}\label{test-the-mux-in-the-lab}}
+
+We recommend that before going out to the field, the user should test the MUX in the lab to get acquainted with the MUX, without having to deal with the field constraints. The contraption to connect the MUX the Spectro::lyser in the field should be tested in the lab first. It is also the time to build/test a sample spool.
+
+It is the time to test the configuration the user is expected to have in the field. It is at that time to test the \emph{config.txt} file that is expected to be used. Only the pump times will have to be adjusted in the field afterwards. It is best to test the MUX over several days in the lab to get acquainted with the files generated on the SD card.
+
+\hypertarget{install-and-test-the-mux-in-the-field}{%
+\section{Install and test the MUX in the field}\label{install-and-test-the-mux-in-the-field}}
+
+\hypertarget{install-all-hardware-to-length}{%
+\subsection{Install all hardware to length}\label{install-all-hardware-to-length}}
+
+When the lab tests have been successful, it is time to install the MUX-sensor system in the field with all the tubing cut to length. It is crucial that the final lengths be correct to test the proper \texttt{\textless{}PUMP\ TIMES\textgreater{}}, \texttt{\textless{}MEASUREMENT\ TIMES\textgreater{}}, and \texttt{\textless{}PURGE\ TIMES\textgreater{}}.
+
+Make sure the intakes for all have screen or mesh size not larger than 1.2 mm. We have seen the pump stall because of large particles that got stuck in the peristaltic pump tubing.
+
+\hypertarget{use-manual-pumping-feature-to-obtain-you-pump-and-purge-times}{%
+\subsection{Use manual pumping feature to obtain you pump and purge times}\label{use-manual-pumping-feature-to-obtain-you-pump-and-purge-times}}
+
+For that, the MUX has a \emph{manual pumping} and \emph{manual purging} feature. At the bottom right end of the control box, there is a toggle switch with three positions (Figure \ref{fig:ControlLabel1}): up for \texttt{FOR} or forward pumping, middle for neutral when not used in manual pumping mode, and down for \texttt{REV} or purging. Make sure you keep this toggle in neutral or middle position for all other use of the MUX.
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{pictures/ControlLabel} 
+
+}
+
+\caption{Control box panel display}\label{fig:ControlLabel1}
+\end{figure}
+
+When manual pumping or purging, a timer keeps track of time and gives the user an opportunity to time all the desired pumping and purging times, to be programed later in the \emph{config.txt} file. To switch from valve to valve, press the \texttt{PREV} button. An example is provided in the following video \ref{fig:ManualVideo}.
+
+\label{fig:ManualVideo}Illustration of the manual pumping features
+
+\hypertarget{manually-trigger-the-mux}{%
+\subsection{Manually trigger the MUX}\label{manually-trigger-the-mux}}
+
+Once you have recorded and implemented the timing in the field, it is time to trigger the MUX manually by pressing the \texttt{TRIG} button. A \emph{sampling sequence} will then start with the first valve on the \emph{config.txt} file. Adjust all timing accordingly and if needed after you observed how the \emph{sampling sequence} works.
+
+\hypertarget{change-clock}{%
+\subsection{Change clock}\label{change-clock}}
+
+To change the clock, press together at the same time the \texttt{LIGHT}, \texttt{PREV}, and \texttt{NEXT} buttons. Advance on the screen using the \texttt{PREV}, and \texttt{NEXT} buttons. Change the values turning the switch up and down. The instructions are further illustrated on the video \ref{fig:ChangeClock}.
+
+\label{fig:ChangeClock}Illustration of how to change the clock
+
+\hypertarget{trouble-shooting}{%
+\chapter{Trouble Shooting}\label{trouble-shooting}}
+
+Still in construction.
 
 \bibliography{book.bib,packages.bib}
 
