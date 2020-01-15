@@ -84,7 +84,7 @@
   \postauthor{\par}
       \predate{\centering\large\emph}
   \postdate{\par}
-    \date{2019-07-22}
+    \date{2020-01-15}
 
 \usepackage{booktabs}
 \usepackage{amsthm}
@@ -777,6 +777,10 @@ Needless to say, the MUX-sensor system will not work unless the connections are 
 
 To preserve the peristatic pump tumbing when not in use, the pump has a nice feature to press or release the tubing from the rollers. At reception of the MUX, the tumbing is not pressed against the rollers. Follow the video \ref{fig:PeristalticPumpVideo} below to do this.
 
+\begin{verbatim}
+## PhantomJS not found. You can install it with webshot::install_phantomjs(). If it is installed, please make sure the phantomjs executable can be found via the PATH variable.
+\end{verbatim}
+
 \label{fig:PeristalticPumpVideo}How to press/release the peristaltic pump tubing against the rollers to activate/deactivate the pump
 
 \hypertarget{install-the-flow-through-cuvette}{%
@@ -819,6 +823,44 @@ At this time, it is important to install the cuvette in its cuvette holder and i
 
 \caption{Full installation of the cuvette holder on the Spectro::lyser}\label{fig:CuvetteSpectro2}
 \end{figure}
+
+\hypertarget{configure-the-spectrolyser-for-cuvette}{%
+\section{Configure the Spectro::lyser for cuvette}\label{configure-the-spectrolyser-for-cuvette}}
+
+For this, you need to log on to your spectro::lyser as `Service' as illustrated below, and use the password \emph{Hermine}. Now, you need to be extremely careful at what you are doing at this point becaus any number you might change might affect the proper functioning of the instrument!
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.7\linewidth]{pictures/SCAN-config-hermine} 
+
+}
+
+\caption{Log on the spectro::lyser as Service}\label{fig:SCAN-config-hermine}
+\end{figure}
+
+Now, go to Extra/Configuration as shown on the figure below.
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.7\linewidth]{pictures/SCAN-config-extra} 
+
+}
+
+\caption{Go to Extra/Configuration}\label{fig:SCAN-config-extra}
+\end{figure}
+
+This will take you to the core of where all the parameters of the spectro::lyser are stored. Again, this is a danger zone so be careful at what you modify or not. So there are two parameters that you can change here as a first step. Go on the top right corner of the screen and change the Path (highlighted in red ellipse) to ``Cuvette''. Now, the pathlength value is stored at the middle left of the screen (highlighted in red ellipse). You can see on the figure below that the value we have here is a 4 mm although we are actually using a 10 mm pathlenght cuvette. This is where it is a bit of an art and things are not fully clear from S::CAN. It is our understanding that the light bulb energy will automatically adjust to the `cuvette' mode and the pathlength we are giving it. This suggests that with lower pathlength values, the light energy should be adjusted lower since there is less `thickness' of water for light through which to travel. But we are not sure this always really works. In all cases, our experience has been that with the configuration used in the figure below, we have had good success in getting the `global calibration' to calculate reasonable nitrate and DOC concentrations. We therefore recommend to use this configuration as a starter. Should the global calibration still not calculate reasonable values, our suggestion is to use 0.01 m (or 10 mm) as pathlength.
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.7\linewidth]{pictures/SCAN-config-cuvette} 
+
+}
+
+\caption{Go to Extra/Configuration}\label{fig:SCAN-config-cuvette}
+\end{figure}
+
+Then log off and log back on as administrator.
 
 \hypertarget{turn-the-mux-on}{%
 \section{Turn the MUX on}\label{turn-the-mux-on}}
