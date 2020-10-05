@@ -32,7 +32,14 @@ Right now, we have three versions available. One specifically dedicated to work 
 
 ## Downloads
 
+You may download the MUX manual as pdf and epub versions below.
+
 - Download the [SpectroMUX.pdf here](https://francoisbirgand.github.io/Multiplexo/MUXManual.pdf)
 
 - Download the [epub version here](https://francoisbirgand.github.io/Multiplexo/MUXManual.epub)
 
+In case you are using the MUX with a Scan Spectro::lyser V2 or V3, with 35 mm opening, you may also want to 3D print the cuvette holders for a flowthrough cuvette 1-Q-10/SBTX2-8/10X20 from Starnacell®.
+
+- Download the [cuvette holder back side](https://francoisbirgand.github.io/Multiplexo/pictures/cuvette_holder_back_side.stl)
+
+- Download the [cuvette holder optic side](https://francoisbirgand.github.io/Multiplexo/pictures/cuvette_holder_optics_side.stl)
